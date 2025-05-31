@@ -1,0 +1,323 @@
+import 'package:doctor_app/core/assets/colors/app_colors.dart';
+import 'package:doctor_app/core/assets/images/images_paths.dart';
+import 'package:doctor_app/presentation/widgets/app_drawer.dart';
+import 'package:doctor_app/presentation/widgets/calendar_task_card.dart';
+import 'package:doctor_app/presentation/widgets/icon_item.dart';
+import 'package:flutter/material.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+enum ViewType { grid, list }
+
+class _HomeScreenState extends State<HomeScreen> {
+  ViewType calendarView = ViewType.list;
+  ViewType taskBarView = ViewType.list;
+
+  final List<Map<String, String>> calendarData = List.generate(
+    5,
+    (index) => {
+      'name': 'Lora',
+      'phone': '9217689098',
+      'date': '12 March 2025',
+      'time': '10:30 am',
+      'imageUrl': 'https://i.pravatar.cc/150?img=5',
+    },
+  );
+
+  final List<Map<String, String>> taskBarData = List.generate(
+    5,
+    (index) => {
+      'name': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'date': '12 March 2025',
+      'time': '10:30 am',
+      'imageUrl': 'https://i.pravatar.cc/150?img=6',
+    },
+  );
+
+  Widget buildToggleButtons(
+    ViewType currentView,
+    void Function(ViewType) onToggle,
+  ) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        IconButton(
+          icon: Icon(Icons.grid_view),
+          color:
+              currentView == ViewType.grid
+                  ? AppColors.primaryColor
+                  : Colors.grey,
+          onPressed: () => onToggle(ViewType.grid),
+        ),
+        IconButton(
+          icon: Icon(Icons.list),
+          color:
+              currentView == ViewType.list
+                  ? AppColors.primaryColor
+                  : Colors.grey,
+          onPressed: () => onToggle(ViewType.list),
+        ),
+      ],
+    );
+  }
+
+  Widget buildCalendarSection() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.primaryColor),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Row(
+              children: [
+                Text(
+                  "Today's Calendar",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Spacer(),
+                buildToggleButtons(calendarView, (val) {
+                  setState(() {
+                    calendarView = val;
+                  });
+                }),
+              ],
+            ),
+          ),
+          SizedBox(height: 8),
+          // Content
+          calendarView == ViewType.list
+              ? ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: calendarData.length,
+                itemBuilder: (context, index) {
+                  final item = calendarData[index];
+                  return CalendarTaskCard(
+                    name: item['name']!,
+                    phone: item['phone']!,
+                    date: item['date']!,
+                    time: item['time']!,
+                    imageUrl: item['imageUrl']!,
+                    isGrid: false,
+                  );
+                },
+              )
+              : SizedBox(
+                height: 140,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: calendarData.length,
+                  itemBuilder: (context, index) {
+                    final item = calendarData[index];
+                    return CalendarTaskCard(
+                      name: item['name']!,
+                      phone: item['phone']!,
+                      date: item['date']!,
+                      time: item['time']!,
+                      imageUrl: item['imageUrl']!,
+                      isGrid: true,
+                    );
+                  },
+                ),
+              ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTaskBarSection() {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.primaryColor),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: EdgeInsets.all(8),
+      margin: EdgeInsets.only(top: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Row(
+              children: [
+                Text(
+                  "My Task Bar",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                Spacer(),
+                buildToggleButtons(taskBarView, (val) {
+                  setState(() {
+                    taskBarView = val;
+                  });
+                }),
+              ],
+            ),
+          ),
+          SizedBox(height: 8),
+          taskBarView == ViewType.list
+              ? ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: taskBarData.length,
+                itemBuilder: (context, index) {
+                  final item = taskBarData[index];
+                  return CalendarTaskCard(
+                    name: item['name']!,
+                    phone: '',
+                    date: item['date']!,
+                    time: item['time']!,
+                    imageUrl: item['imageUrl']!,
+                    isGrid: false,
+                  );
+                },
+              )
+              : SizedBox(
+                height: 140,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: taskBarData.length,
+                  itemBuilder: (context, index) {
+                    final item = taskBarData[index];
+                    return CalendarTaskCard(
+                      name: item['name']!,
+                      phone: '',
+                      date: item['date']!,
+                      time: item['time']!,
+                      imageUrl: item['imageUrl']!,
+                      isGrid: true,
+                    );
+                  },
+                ),
+              ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildBottomIconsGrid() {
+    final items = [
+      {'icon': Icons.person_add, 'label': 'My Patient'},
+      {'icon': Icons.calendar_today, 'label': 'Calendar'},
+      {'icon': Icons.task, 'label': 'Tasks'},
+      {'icon': Icons.receipt_long, 'label': 'Invoices'},
+      {'icon': Icons.medical_services_outlined, 'label': 'Appointments'},
+      {'icon': Icons.assignment, 'label': 'Reports'},
+      {'icon': Icons.mail_outline, 'label': 'Messages'},
+      {'icon': Icons.phone_in_talk, 'label': 'voice Call Consultation'},
+      {'icon': Icons.video_call, 'label': 'Video Call Consultation'},
+      {'icon': Icons.payment, 'label': 'Payments'},
+      {'icon': Icons.health_and_safety, 'label': 'Health Tracker'},
+      {'icon': Icons.add, 'label': 'Add New'},
+    ];
+
+    return Container(
+      margin: const EdgeInsets.only(top: 24, bottom: 24),
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: items.length,
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+          childAspectRatio: 0.85,
+        ),
+        itemBuilder: (context, index) {
+          final item = items[index];
+          return IconItems(
+            icon: item['icon'] as IconData,
+            label: item['label'] as String,
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: const AppDrawer(),
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.black87),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            );
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: CircleAvatar(
+              backgroundImage: AssetImage(ImagePath.profileAvatar),
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: AppColors.backgroundColor, // purple background
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: ListView(
+          children: [
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Greeting texts
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Good Morning!",
+                      style: TextStyle(fontSize: 16, color: Colors.black87),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      "Dr. Staller Kane",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Bell icon button
+                IconButton(
+                  onPressed: () {
+                    // Add your bell action here
+                    print("Bell clicked");
+                  },
+                  icon: Icon(Icons.notifications_none, color: Colors.black87),
+                  tooltip: 'Notifications',
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            buildCalendarSection(),
+            buildTaskBarSection(),
+            SizedBox(height: 8),
+            buildBottomIconsGrid(),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+}
