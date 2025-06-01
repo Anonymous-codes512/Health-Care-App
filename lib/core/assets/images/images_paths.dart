@@ -8,4 +8,5 @@ class ImagePath {
   static const String createAccountDialogImage =
       'assets/images/Man logging out of the account on phone.png';
   static const String profileAvatar = 'assets/images/profile.jpg';
+  static const String emptyImage = 'assets/images/empty_box.png';
 }

@@ -206,18 +206,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildBottomIconsGrid() {
     final items = [
-      {'icon': Icons.person_add, 'label': 'My Patient'},
-      {'icon': Icons.calendar_today, 'label': 'Calendar'},
-      {'icon': Icons.task, 'label': 'Tasks'},
-      {'icon': Icons.receipt_long, 'label': 'Invoices'},
-      {'icon': Icons.medical_services_outlined, 'label': 'Appointments'},
-      {'icon': Icons.assignment, 'label': 'Reports'},
-      {'icon': Icons.mail_outline, 'label': 'Messages'},
-      {'icon': Icons.phone_in_talk, 'label': 'voice Call Consultation'},
-      {'icon': Icons.video_call, 'label': 'Video Call Consultation'},
-      {'icon': Icons.payment, 'label': 'Payments'},
-      {'icon': Icons.health_and_safety, 'label': 'Health Tracker'},
-      {'icon': Icons.add, 'label': 'Add New'},
+      {
+        'icon': Icons.person_add,
+        'label': 'My Patient',
+        'route': '/add_paitent_screen',
+      },
+      {
+        'icon': Icons.calendar_today,
+        'label': 'Calendar',
+        'route': '/calendar_screen',
+      },
+      {'icon': Icons.task, 'label': 'Tasks', 'route': '/tasks_screen'},
+      {
+        'icon': Icons.receipt_long,
+        'label': 'Invoices',
+        'route': '/invoices_screen',
+      },
+      {
+        'icon': Icons.medical_services_outlined,
+        'label': 'Appointments',
+        'route': '/appointments_screen',
+      },
+      {
+        'icon': Icons.assignment,
+        'label': 'Reports',
+        'route': '/reports_screen',
+      },
+      {
+        'icon': Icons.mail_outline,
+        'label': 'Messages',
+        'route': '/all_message_screen',
+      },
+      {
+        'icon': Icons.phone_in_talk,
+        'label': 'Voice Call Consultation',
+        'route': '/all_voice_screen',
+      },
+      {
+        'icon': Icons.video_call,
+        'label': 'Video Call Consultation',
+        'route': '/all_video_screen',
+      },
+      {'icon': Icons.payment, 'label': 'Payments', 'route': '/payments_screen'},
+      {
+        'icon': Icons.health_and_safety,
+        'label': 'Health Tracker',
+        'route': '/health_tracker_screen',
+      },
+      {'icon': Icons.add, 'label': 'Add New', 'route': '/add_patient_screen'},
     ];
 
     return Container(
@@ -236,6 +272,12 @@ class _HomeScreenState extends State<HomeScreen> {
         itemBuilder: (context, index) {
           final item = items[index];
           return IconItems(
+            onTap: () {
+              final route = item['route'] as String?;
+              if (route != null) {
+                Navigator.pushNamed(context, route);
+              }
+            },
             icon: item['icon'] as IconData,
             label: item['label'] as String,
           );
