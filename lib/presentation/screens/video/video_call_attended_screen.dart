@@ -68,9 +68,7 @@ class CallAttendedScreen extends StatelessWidget {
                   Positioned(
                     right: 0,
                     child: GestureDetector(
-                      onTap: () {
-                        // TODO: Add person action
-                      },
+                      onTap: () {},
                       child: Container(
                         width: 44,
                         height: 44,
@@ -127,9 +125,7 @@ class CallAttendedScreen extends StatelessWidget {
                     top: 8,
                     right: 8,
                     child: GestureDetector(
-                      onTap: () {
-                        // TODO: Add camera flip action
-                      },
+                      onTap: () {},
                       child: Container(
                         width: 32,
                         height: 32,

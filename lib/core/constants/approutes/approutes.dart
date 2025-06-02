@@ -5,6 +5,13 @@ import 'package:doctor_app/presentation/screens/auth/otp_verification_screen.dar
 import 'package:doctor_app/presentation/screens/auth/password_changed_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/register_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/reset_password_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_empty_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_record_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_tacker_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/analysis_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/health_tracker_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/health_tracker_start_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/reminders_settings_screen.dart';
 import 'package:doctor_app/presentation/screens/home/home_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/all_message_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/chat_screen.dart';
@@ -32,6 +39,14 @@ class Routes {
   static const String voiceCallDetailScreen = '/voice_details_screen';
   static const String voiceCallScreen = '/voice_call_screen';
   static const String allVideoCallsScreen = '/all_video_screen';
+  static const String healthTrackerStartScreen = '/health_tracker_start_screen';
+  static const String healthTrackerScreen = '/health_tracker_screen';
+  static const String analysisScreen = '/analysis_screen';
+  static const String remindersSettingsScreen = '/reminders_settings_screen';
+  static const String bpTrackerScreen = '/bp_tracker_screen';
+  static const String bpEmptyScreen = '/bp_empty_screen';
+  static const String bpRecordScreen = '/bp_record_screen';
+  static const String bpHistoryScreen = '/bp_history_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -70,6 +85,25 @@ class Routes {
 
       case allVideoCallsScreen:
         return MaterialPageRoute(builder: (_) => AllVideoCallScreen());
+      case healthTrackerStartScreen:
+        return MaterialPageRoute(builder: (_) => HealthTrackerStartScreen());
+      case healthTrackerScreen:
+        return MaterialPageRoute(builder: (_) => HealthTrackerScreen());
+      case analysisScreen:
+        return MaterialPageRoute(builder: (_) => AnalysisScreen());
+      case remindersSettingsScreen:
+        return MaterialPageRoute(builder: (_) => RemindersSettingsScreen());
+      case bpRecordScreen:
+        return MaterialPageRoute(builder: (_) => BpRecordScreen());
+      case bpTrackerScreen:
+        final args = settings.arguments;
+        List<Map<String, String>> records = [];
+        if (args != null && args is List<Map<String, String>>) {
+          records = args;
+        }
+        return MaterialPageRoute(
+          builder: (_) => BpTrackerScreen(records: records),
+        );
 
       default:
         return MaterialPageRoute(

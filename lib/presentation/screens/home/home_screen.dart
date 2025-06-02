@@ -251,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {
         'icon': Icons.health_and_safety,
         'label': 'Health Tracker',
-        'route': '/health_tracker_screen',
+        'route': '/health_tracker_start_screen',
       },
       {'icon': Icons.add, 'label': 'Add New', 'route': '/add_patient_screen'},
     ];
