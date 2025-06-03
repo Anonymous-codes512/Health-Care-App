@@ -168,7 +168,11 @@ class HealthTrackerScreen extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                     onTap: () {
-                      // Navigate or action
+                      Navigator.pushNamed(
+                        context,
+                        Routes.weightTrackerScreen,
+                        arguments: sampleRecords,
+                      );
                     },
                   ),
                   HealthTile(
@@ -179,7 +183,13 @@ class HealthTrackerScreen extends StatelessWidget {
                       height: 50,
                       fit: BoxFit.contain,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.bmiTrackerScreen,
+                        arguments: sampleRecords,
+                      );
+                    },
                   ),
                   HealthTile(
                     title: 'BP Tracker',
@@ -205,7 +215,13 @@ class HealthTrackerScreen extends StatelessWidget {
                       height: 50,
                       fit: BoxFit.contain,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.pulseTrackerScreen,
+                        arguments: sampleRecords,
+                      );
+                    },
                   ),
                 ],
               ),

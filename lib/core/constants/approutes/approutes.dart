@@ -5,13 +5,18 @@ import 'package:doctor_app/presentation/screens/auth/otp_verification_screen.dar
 import 'package:doctor_app/presentation/screens/auth/password_changed_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/register_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/reset_password_screen.dart';
-import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_empty_screen.dart';
-import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_record_screen.dart';
-import 'package:doctor_app/presentation/screens/health%20tracker%20screen/BP%20Tracker/bp_tacker_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bmi%20tracker/bmi_record_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bmi%20tracker/bmi_tacker_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bp%20tracker/bp_record_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bp%20tracker/bp_tacker_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/analysis_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/health_tracker_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/health_tracker_start_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/pulse%20tracker/pulse_record_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/pulse%20tracker/pulse_tacker_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/reminders_settings_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/weight%20tracker/weight_record_screen.dart';
+import 'package:doctor_app/presentation/screens/health%20tracker%20screen/weight%20tracker/weight_tacker_screen.dart';
 import 'package:doctor_app/presentation/screens/home/home_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/all_message_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/chat_screen.dart';
@@ -44,9 +49,13 @@ class Routes {
   static const String analysisScreen = '/analysis_screen';
   static const String remindersSettingsScreen = '/reminders_settings_screen';
   static const String bpTrackerScreen = '/bp_tracker_screen';
-  static const String bpEmptyScreen = '/bp_empty_screen';
   static const String bpRecordScreen = '/bp_record_screen';
-  static const String bpHistoryScreen = '/bp_history_screen';
+  static const String weightTrackerScreen = '/weight_tracker_screen';
+  static const String weightRecordScreen = '/weight_record_screen';
+  static const String bmiTrackerScreen = '/bmi_tracker_screen';
+  static const String bmiRecordScreen = '/bmi_record_screen';
+  static const String pulseTrackerScreen = '/pulse_tracker_screen';
+  static const String pulseRecordScreen = '/pulse_record_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -103,6 +112,42 @@ class Routes {
         }
         return MaterialPageRoute(
           builder: (_) => BpTrackerScreen(records: records),
+        );
+
+      case weightRecordScreen:
+        return MaterialPageRoute(builder: (_) => WeightRecordScreen());
+      case weightTrackerScreen:
+        final args = settings.arguments;
+        List<Map<String, String>> records = [];
+        if (args != null && args is List<Map<String, String>>) {
+          records = args;
+        }
+        return MaterialPageRoute(
+          builder: (_) => WeightTrackerScreen(records: records),
+        );
+
+      case bmiRecordScreen:
+        return MaterialPageRoute(builder: (_) => BMIRecordScreen());
+      case bmiTrackerScreen:
+        final args = settings.arguments;
+        List<Map<String, String>> records = [];
+        if (args != null && args is List<Map<String, String>>) {
+          records = args;
+        }
+        return MaterialPageRoute(
+          builder: (_) => BMITrackerScreen(records: records),
+        );
+
+      case pulseRecordScreen:
+        return MaterialPageRoute(builder: (_) => PulseRecordScreen());
+      case pulseTrackerScreen:
+        final args = settings.arguments;
+        List<Map<String, String>> records = [];
+        if (args != null && args is List<Map<String, String>>) {
+          records = args;
+        }
+        return MaterialPageRoute(
+          builder: (_) => PulseTrackerScreen(records: records),
         );
 
       default:
