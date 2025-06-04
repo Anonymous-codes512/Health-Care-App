@@ -60,21 +60,23 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Row(
-              children: [
-                Icon(Icons.calendar_today_outlined, color: Colors.grey[700]),
-                const SizedBox(width: 12),
-                Text(
-                  formattedDate,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[800],
-                    fontWeight: FontWeight.w600,
+            child: Flexible(
+              child: Row(
+                children: [
+                  Icon(Icons.calendar_today_outlined, color: Colors.grey[700]),
+                  const SizedBox(width: 12),
+                  Text(
+                    formattedDate,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[800],
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                Spacer(),
-                Icon(Icons.arrow_drop_down, color: Colors.grey[700]),
-              ],
+                  Spacer(),
+                  Icon(Icons.arrow_drop_down, color: Colors.grey[700]),
+                ],
+              ),
             ),
           ),
         ),

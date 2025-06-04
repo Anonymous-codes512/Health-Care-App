@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 class PrimaryCustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
-  const PrimaryCustomButton({required this.text, this.onPressed, super.key});
+  final bool isdelete;
+  const PrimaryCustomButton({
+    required this.text,
+    this.onPressed,
+    this.isdelete = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primaryColor, // Blue
+        backgroundColor:
+            isdelete ? AppColors.errorColor : AppColors.primaryColor, // Blue
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         minimumSize: const Size(double.infinity, 45),
       ),

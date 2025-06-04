@@ -228,29 +228,18 @@ class HealthTrackerScreen extends StatelessWidget {
               const SizedBox(height: 20),
               LargeHealthTile(
                 title: 'Steps & Calories Counter',
-                icon: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.blue.shade100,
-                  ),
-                  child: Text(
-                    'kcal',
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      color: Colors.blue.shade800,
-                    ),
-                  ),
-                ),
-                stepsIcons: const [
-                  Icon(Icons.directions_walk, size: 20),
-                  SizedBox(width: 8),
-                  Icon(Icons.directions_walk, size: 20),
-                  SizedBox(width: 8),
-                  Icon(Icons.directions_walk, size: 20),
+                icon: Image.asset(ImagePath.calories),
+                stepsIcons: [
+                  Image.asset(ImagePath.step1, width: 20, height: 20),
+                  Image.asset(ImagePath.step2, width: 25, height: 25),
+                  Image.asset(ImagePath.step3, width: 30, height: 30),
                 ],
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    Routes.stepsAndCaloriesCounterScreen,
+                  );
+                },
               ),
               const SizedBox(height: 30),
               OutlinedCustomButton(

@@ -16,4 +16,8 @@ class ImagePath {
   static const String bpTrackerImage = 'assets/images/medical-gadget1.png';
   static const String pulseTrackerImage = 'assets/images/oximeter1.png';
   static const String comboChart = 'assets/images/combochart.png';
+  static const String calories = 'assets/images/calories.png';
+  static const String step1 = 'assets/images/footsteps-1.png';
+  static const String step2 = 'assets/images/footsteps-2.png';
+  static const String step3 = 'assets/images/footsteps-3.png';
 }
