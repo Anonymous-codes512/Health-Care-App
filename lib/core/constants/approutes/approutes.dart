@@ -5,6 +5,8 @@ import 'package:doctor_app/presentation/screens/auth/otp_verification_screen.dar
 import 'package:doctor_app/presentation/screens/auth/password_changed_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/register_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/reset_password_screen.dart';
+import 'package:doctor_app/presentation/screens/calendar/add_appointment_screen.dart';
+import 'package:doctor_app/presentation/screens/calendar/add_task_screen.dart';
 import 'package:doctor_app/presentation/screens/calendar/calendar_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bmi%20tracker/bmi_record_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/bmi%20tracker/bmi_tacker_screen.dart';
@@ -61,6 +63,8 @@ class Routes {
   static const String stepsAndCaloriesCounterScreen =
       '/steps_and_calories-ccounter_screen';
   static const String calendarScreen = '/calendar_screen';
+  static const String addNewTaskScreen = '/add_new_task_screen';
+  static const String addNewAppointmentScreen = '/add_new_appointment_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -158,6 +162,10 @@ class Routes {
         return MaterialPageRoute(builder: (_) => StepsCaloriesCounterScreen());
       case calendarScreen:
         return MaterialPageRoute(builder: (_) => CalendarScreen());
+      case addNewTaskScreen:
+        return MaterialPageRoute(builder: (_) => AddTaskScreen());
+      case addNewAppointmentScreen:
+        return MaterialPageRoute(builder: (_) => AddAppointmentScreen());
       default:
         return MaterialPageRoute(
           builder:

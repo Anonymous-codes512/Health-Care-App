@@ -4,12 +4,14 @@ import 'package:intl/intl.dart';
 class DateSelectorWidget extends StatefulWidget {
   final DateTime initialDate;
   final ValueChanged<DateTime> onDateChanged;
+  final String? label;
 
   const DateSelectorWidget({
-    Key? key,
+    super.key,
     required this.initialDate,
     required this.onDateChanged,
-  }) : super(key: key);
+    this.label,
+  });
 
   @override
   _DateSelectorWidgetState createState() => _DateSelectorWidgetState();
@@ -48,7 +50,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Date',
+          widget.label ?? 'Date',
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
         ),
         const SizedBox(height: 6),
