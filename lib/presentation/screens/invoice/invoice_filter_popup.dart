@@ -1,31 +1,25 @@
 import 'package:doctor_app/core/assets/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomFilterPopup extends StatefulWidget {
-  const CustomFilterPopup({Key? key}) : super(key: key);
+class InvoiceFilterPopup extends StatefulWidget {
+  const InvoiceFilterPopup({Key? key}) : super(key: key);
 
   @override
   _FilterDialogState createState() => _FilterDialogState();
 }
 
-class _FilterDialogState extends State<CustomFilterPopup> {
+class _FilterDialogState extends State<InvoiceFilterPopup> {
   // Controllers and state variables
   DateTime fromDate = DateTime.now();
   DateTime toDate = DateTime.now().add(Duration(days: 1));
+
   TextEditingController patientNameController = TextEditingController();
-  String? selectedPaymentStatus;
-  String? selectedAmountRange;
-  String? selectedInvoiceType;
   String selectedDateFilter = 'Today';
 
-  // Sample data for dropdowns
-  final List<String> paymentStatusOptions = [
-    'Paid',
-    'Pending',
-    'Overdue',
-    'Cancelled',
-  ];
+  String? selectedPaymentStatus;
+  final List<String> paymentStatusOptions = ['Paid', 'Unpaid', 'Pending'];
 
+  String? selectedAmountRange;
   final List<String> amountRangeOptions = [
     '0 - 100',
     '100 - 500',
@@ -33,11 +27,11 @@ class _FilterDialogState extends State<CustomFilterPopup> {
     '1000+',
   ];
 
+  String? selectedInvoiceType;
   final List<String> invoiceTypeOptions = [
     'Consultation',
-    'Treatment',
-    'Prescription',
-    'Lab Test',
+    'Follow up',
+    'Reports',
   ];
 
   void _resetDateRange() {

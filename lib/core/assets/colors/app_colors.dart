@@ -11,6 +11,8 @@ class AppColors {
   static const Color backgroundColor = Color(0XFFFFFFFF);
   static const Color iconBackgroundColor = Color(0xFFe7dbf1);
 
+  static const Color tableColor = Color(0xFFc5ceed);
+
   static const Color borderColor = Colors.grey;
   static const Color iconColor = Colors.grey;
   static const Color buttonBgColor = Color(0xFFE0E0E0);

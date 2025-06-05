@@ -216,21 +216,21 @@ class _HomeScreenState extends State<HomeScreen> {
         'label': 'Calendar',
         'route': '/calendar_screen',
       },
-      {'icon': Icons.task, 'label': 'Tasks', 'route': '/tasks_screen'},
+      {'icon': Icons.task, 'label': 'Tasks', 'route': '/my_task_screen'},
       {
         'icon': Icons.receipt_long,
         'label': 'Invoices',
-        'route': '/invoices_screen',
+        'route': '/my_invoices_screen',
       },
       {
         'icon': Icons.medical_services_outlined,
         'label': 'Appointments',
-        'route': '/appointments_screen',
+        'route': '/my_appointment_screen',
       },
       {
         'icon': Icons.assignment,
         'label': 'Reports',
-        'route': '/reports_screen',
+        'route': '/all_patients_reports_screen',
       },
       {
         'icon': Icons.mail_outline,

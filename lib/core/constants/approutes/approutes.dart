@@ -1,3 +1,5 @@
+import 'package:doctor_app/presentation/reports/all_patients_reports.dart';
+import 'package:doctor_app/presentation/screens/appointment/appointment_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/forgot_password_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/login_screen.dart';
 import 'package:doctor_app/presentation/screens/auth/opening_screen.dart';
@@ -22,10 +24,14 @@ import 'package:doctor_app/presentation/screens/health%20tracker%20screen/steps%
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/weight%20tracker/weight_record_screen.dart';
 import 'package:doctor_app/presentation/screens/health%20tracker%20screen/weight%20tracker/weight_tacker_screen.dart';
 import 'package:doctor_app/presentation/screens/home/home_screen.dart';
+import 'package:doctor_app/presentation/screens/invoice/invoice_details_screen.dart';
+import 'package:doctor_app/presentation/screens/invoice/my_invoices_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/all_message_screen.dart';
 import 'package:doctor_app/presentation/screens/messages/chat_screen.dart';
 import 'package:doctor_app/presentation/screens/onboarding/onboarding_screen.dart';
+import 'package:doctor_app/presentation/screens/payment/my_payments_screen.dart';
 import 'package:doctor_app/presentation/screens/splash screen/splash_screen.dart';
+import 'package:doctor_app/presentation/screens/task/task_screen.dart';
 import 'package:doctor_app/presentation/screens/video/all_video_screen.dart';
 import 'package:doctor_app/presentation/screens/voice/all_voice_screen.dart';
 import 'package:doctor_app/presentation/screens/voice/call_screen.dart';
@@ -65,6 +71,14 @@ class Routes {
   static const String calendarScreen = '/calendar_screen';
   static const String addNewTaskScreen = '/add_new_task_screen';
   static const String addNewAppointmentScreen = '/add_new_appointment_screen';
+
+  static const String myAppointmentScreen = '/my_appointment_screen';
+  static const String myTaskScreen = '/my_task_screen';
+
+  static const String myInvoicesScreen = '/my_invoices_screen';
+  static const String invoiceDetailScreen = '/invoice_detail_screen';
+  static const String paymentsScreen = '/payments_screen';
+  static const String allPatientsReportsScreen = '/all_patients_reports_screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -166,6 +180,32 @@ class Routes {
         return MaterialPageRoute(builder: (_) => AddTaskScreen());
       case addNewAppointmentScreen:
         return MaterialPageRoute(builder: (_) => AddAppointmentScreen());
+
+      case myAppointmentScreen:
+        return MaterialPageRoute(builder: (_) => AppointmentScreen());
+
+      case myTaskScreen:
+        return MaterialPageRoute(builder: (_) => TaskScreen());
+
+      case myInvoicesScreen:
+        return MaterialPageRoute(builder: (_) => MyInvoicesScreen());
+
+      case invoiceDetailScreen:
+        final args = settings.arguments;
+        Map<String, dynamic> invoice = {};
+        if (args != null && args is Map<String, dynamic>) {
+          invoice = args;
+        }
+        return MaterialPageRoute(
+          builder: (_) => InvoiceDetailsScreen(invoice: invoice),
+        );
+
+      case paymentsScreen:
+        return MaterialPageRoute(builder: (_) => MyPaymentsScreen());
+
+      case allPatientsReportsScreen:
+        return MaterialPageRoute(builder: (_) => AllPatientsReportsScreen());
+
       default:
         return MaterialPageRoute(
           builder:
